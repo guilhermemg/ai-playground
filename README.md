@@ -1,5 +1,5 @@
 
-# ai-playground
+# AI Playground
 
 A collection of AI experiments showcasing the power of language models (LLMs), agents, and LangChain. This repository contains various demonstrations and interactive examples to explore cutting-edge AI technologies in a hands-on, practical way. It is designed to showcase my expertise in:
 - Building and deploying AI solutions.
@@ -11,36 +11,10 @@ The projects here are built to be both educational and practical, providing insi
 
 ---
 
-## Table of Contents
-
-- [Introduction](#introduction)
-- [Technologies Used](#technologies-used)
-- [How to Run](#how-to-run)
-- [Contributing](#contributing)
-- [License](#license)
-- [Contact](#contact)
-
----
-
-## Introduction
-
-Welcome to my **AI Playground**! In this repository, I demonstrate various applications of Large Language Models (LLMs) using LangChain, as well as the development of autonomous agents that can perform complex tasks.
-
-This repository is a way to showcase my skills in:
-- Building and deploying AI solutions.
-- Creating intelligent agents for real-world applications.
-- Integrating LLMs with APIs and external services.
-- Working with frameworks like LangChain for managing agents, prompts, and chains.
-
-The projects here are built to be both educational and practical, providing insight into how modern AI technologies can be applied in various domains.
-
----
-
 ## Projects
 
- [![Simple Sales Assistant](https://img.shields.io/static/v1?label=Project&message=Simple%20Sales%20Assistant&color=blue)](./simple-sales-assistant/)
- 
- - A simple AI assistant made with OpenAI API and deploy in a dockerized microservice.
+ - **[Simple Sales Assistant](./simple-sales-assistant/)**  
+   - A simple AI assistant made with OpenAI API and deploy in a dockerized microservice.
 
 ---
 
