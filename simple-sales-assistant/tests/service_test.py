@@ -43,3 +43,17 @@ class Test_API_ClientAssistant(unittest.TestCase):
         eval_score = eval_response_with_ideal(data["assistance"], MSG_IDEAL_PAIR_SET[2]["ideal_answer"])
 
         self.assertEqual(eval_score, 1.0)
+
+    
+    def test_overall_efficacy(self):
+        """
+        Test the overall efficacy of the assistant is greater than 0.8 (80%).
+        """
+        total_score = 0
+        for i in range(len(MSG_IDEAL_PAIR_SET)):
+            resp = make_request(TargetURL.FORMATTED_ASSISTANCE_URL, MSG_IDEAL_PAIR_SET[i]["customer_msg"])
+            data = resp.json()
+            eval_score = eval_response_with_ideal(data["assistance"], MSG_IDEAL_PAIR_SET[i]["ideal_answer"])
+            total_score += eval_score
+        avg_score = total_score / len(MSG_IDEAL_PAIR_SET)
+        self.assertGreater(avg_score, 0.8, "The average score is: " + str(avg_score) + " which is less than 0.9")
