@@ -71,4 +71,4 @@ class Test_API_ClientAssistant(unittest.TestCase):
             eval_score = eval_response_with_ideal(data["assistance"], MSG_IDEAL_PAIR_SET[i]["ideal_answer"])
             total_score += eval_score
         avg_score = total_score / len(MSG_IDEAL_PAIR_SET)
-        self.assertGreater(avg_score, 0.8, "The average score is: " + str(avg_score) + " which is less than 0.9")
+        self.assertEqual(avg_score, 0.9, "The average score is: " + str(avg_score) + " which is less than 0.9")
