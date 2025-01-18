@@ -1,0 +1,16 @@
+version: '3.3'
+
+services:
+  
+  sales-assistant-service:
+    build: ./
+    container_name: sales-assistant-service
+    env_file:
+      - .env
+    networks:
+      - sales-assistant-net
+    ports:
+      - 8000:8000
+    
+networks:
+  sales-assistant-net:

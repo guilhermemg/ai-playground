@@ -1,0 +1,7 @@
+openai==0.28.0              # Library to interact with OpenAI GPT
+langchain==0.0.160          # LangChain for manipulating LLMs and agents
+fastapi==0.95.0             # Framework to create API with Python
+uvicorn==0.22.0             # ASGI server to run FastAPI
+requests==2.31              # Library to make HTTP requests (example of external API)
+pydantic==1.10.9            # Data validation library, used with FastAPI
+python-dotenv==1.0.0        # Manage environment variables (like the OpenAI API key)

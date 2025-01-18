@@ -1,0 +1,9 @@
+openai==0.28.0                # Biblioteca para interagir com o OpenAI GPT
+langchain==0.0.160             # LangChain para manipulação de LLMs e agentes
+fastapi==0.95.0                # Framework para criar API com Python
+uvicorn==0.22.0                # Servidor ASGI para rodar a API FastAPI
+requests==2.31                 # Biblioteca para fazer requisições HTTP (exemplo de API externa)
+pydantic==1.10.9               # Biblioteca de validação de dados, usada com FastAPI
+python-dotenv==1.0.0           # Gerenciar variáveis de ambiente (como a chave da API OpenAI)
+panel==1.5.5
+jupyter_bokeh==4.0.5
