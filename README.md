@@ -36,6 +36,14 @@ The projects here are built to be both educational and practical, providing insi
 
 ---
 
+## Projects
+
+ [![Simple Sales Assistant](https://img.shields.io/static/v1?label=Project&message=Simple%20Sales%20Assistant&color=blue)](./simple-sales-assistant/)
+ 
+ - A simple AI assistant made with OpenAI API and deploy in a dockerized microservice.
+
+---
+
 ## Technologies Used
 
 - **Python 3.8+**
@@ -45,33 +53,6 @@ The projects here are built to be both educational and practical, providing insi
 - **Requests** (for external API integration)
 - **Pydantic** (for data validation)
 - **python-dotenv** (for environment management)
-
----
-
-## How to Run
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/yourusername/ai-playground.git
-   ```
-
-2. Create and activate a virtual environment:
-   ```bash
-   python3 -m venv venv
-   source venv/bin/activate  # On Windows: venv\Scripts\activate
-   ```
-
-3. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-4. Set up your API keys (e.g., OpenAI, Weather API) in a `.env` file.
-
-5. Run the examples:
-   ```bash
-   python example_file.py
-   ```
 
 ---
 
