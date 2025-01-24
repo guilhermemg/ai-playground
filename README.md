@@ -47,3 +47,5 @@ This repository is licensed under the MIT License. See [LICENSE](LICENSE) for mo
 ## Contact
 
 If you are a recruiter or hiring manager, feel free to connect with me through my [LinkedIn](https://www.linkedin.com/in/ggadelha).
+
+Take a look at my [Medium blog](https://medium.com/@guilhermemgadelha).
