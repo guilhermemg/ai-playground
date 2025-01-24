@@ -171,4 +171,4 @@ Unless otherwise specified, this project is available under an open-source licen
 
 Interested in learning more or collaborating on similar AI-driven projects?
 
-I’d love to connect! Feel free to reach out on [LinkedIn](https://www.linkedin.com/in/ggadelha/) or [GitHub](https://github.com/guilhermemg) so we can explore new ideas, discuss potential opportunities, and continue pushing the boundaries of what's possible with AI.python
+I’d love to connect! Feel free to reach out on [LinkedIn](https://www.linkedin.com/in/ggadelha/) or [GitHub](https://github.com/guilhermemg) so we can explore new ideas, discuss potential opportunities, and continue pushing the boundaries of what's possible with AI.
