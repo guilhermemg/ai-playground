@@ -15,6 +15,8 @@ The projects here are built to be both educational and practical, providing insi
 
  - **[Simple Sales Assistant](./simple-sales-assistant/)**  
    - A simple AI assistant made with OpenAI API and deploy in a dockerized microservice.
+ - **[Tutoring Assistant](./tutoring-assistant/)**
+   - A tutoring assistant project that leverages LangChain, OpenAI’s GPT-3.5-Turbo, and the ReAct (Reason + Act) framework to evaluate questionnaires, generate feedback, and assign scores to student responses.
 
 ---
 
