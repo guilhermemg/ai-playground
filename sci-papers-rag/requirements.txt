@@ -1,0 +1,20 @@
+langchain==0.3.15            # LangChain for manipulating LLMs and agents
+langchain-openai==0.3.2      # LangChain OpenAI plugin
+langchain-pinecone==0.2.2    # LangChain Pinecone plugin
+langchain-community==0.3.15  # LangChain Community plugin
+langchainhub==0.1.21         # LangChain Hub for managing agents
+python-dotenv==1.0.1         # Manage environment variables (like the OpenAI API key)
+pinecone-client==4.1.2
+beautifulsoup4==4.12.3
+tiktoken==0.8.0
+openai==1.60.0
+unstructured==0.16.16
+nltk==3.9.1
+jinja2==3.1.5
+fastapi==0.115.7
+uvicorn==0.34.0
+streamlit==1.41.1
+streamlit-chat==0.1.1
+tqdm==4.67.1
+langsmith==0.3.1
+pdfminer.six==20240706
