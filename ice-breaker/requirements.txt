@@ -1,0 +1,8 @@
+flask
+tweepy
+pylint
+black
+isort
+langchain
+langchain-community
+langchain-openai
