@@ -1,0 +1,7 @@
+langchain==0.0.160
+openai==0.28.0
+fastapi==0.95.0
+uvicorn==0.22.0
+pydantic==1.10.9
+python-dotenv==1.0.0
+PyPDF2==1.26.0  # For handling PDFs

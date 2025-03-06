@@ -1,0 +1,16 @@
+version: '3.3'
+
+services:
+  
+  pdf-summarizer-service:
+    build: ./
+    container_name: pdf-summarizer-service
+    env_file:
+      - .env
+    networks:
+      - pdf-summarizer-net
+    ports:
+      - 8002:8002
+    
+networks:
+  pdf-summarizer-net:
