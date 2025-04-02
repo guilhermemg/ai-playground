@@ -288,3 +288,55 @@ class ArxivPaperSummarizer:
         
         print(f"\nProcessing complete. Processed {len(results)} papers.")
         return results 
+
+    def process_paper_by_id(self, paper_id: str) -> Dict:
+        """Process a paper by its arXiv ID"""
+        try:
+            # Get paper info from arXiv
+            client = arxiv.Client()
+            paper = next(client.results(arxiv.Search(id_list=[paper_id])))
+            
+            # Process the paper
+            return self.process_paper(paper)
+        except Exception as e:
+            raise Exception(f"Error processing paper {paper_id}: {e}")
+
+    def search_arxiv(self, topic: str, max_results: int = 5) -> List[Dict]:
+        """Search arXiv and return paper metadata without downloading"""
+        client = arxiv.Client()
+        search = arxiv.Search(
+            query=topic,
+            max_results=max_results,
+        )
+        papers = list(client.results(search))
+        
+        # Convert to simplified format without downloading PDFs
+        return [{
+            'entry_id': paper.entry_id,
+            'title': paper.title,
+            'authors': [str(author) for author in paper.authors],
+            'summary': paper.summary,
+            'published': paper.published.isoformat() if paper.published else None,
+            'pdf_url': paper.pdf_url,
+            'categories': paper.categories
+        } for paper in papers]
+
+    def search_local(self, query: str) -> List[Dict]:
+        """Search papers in local storage"""
+        query = query.lower()
+        results = []
+        
+        for file in os.listdir(self.data_dir):
+            if file.endswith('.json'):
+                try:
+                    with open(os.path.join(self.data_dir, file), 'r') as f:
+                        paper = json.load(f)
+                        # Search in title, summary, and authors
+                        if (query in paper.get('title', '').lower() or
+                            query in paper.get('summary', '').lower() or
+                            any(query in author.lower() for author in paper.get('authors', []))):
+                            results.append(paper)
+                except Exception as e:
+                    print(f"Error reading {file}: {e}")
+                
+        return results 
