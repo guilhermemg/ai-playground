@@ -1,0 +1,8 @@
+langchain
+langgraph
+chromadb
+arxiv
+python-dotenv
+openai
+PyMuPDF
+requests 

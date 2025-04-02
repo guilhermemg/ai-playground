@@ -170,3 +170,4 @@ cython_debug/
 # PyPI configuration file
 .pypirc
 .vscode/settings.json
+sci-papers-rag/src/chroma_db/chroma.sqlite3
