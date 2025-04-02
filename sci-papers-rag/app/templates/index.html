@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ArXiv Paper Summarizer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 20px;
+        }
+
+        .paper-list {
+            border-right: 1px solid #ccc;
+            padding-right: 20px;
+        }
+
+        .paper-item {
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #eee;
+            cursor: pointer;
+            position: relative;
+            transition: background-color 0.2s;
+        }
+
+        .paper-item.active {
+            background-color: #e3f2fd;
+            border-color: #2196f3;
+        }
+
+        .loading {
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        .paper-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        #selectedPaperSummary {
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            display: none;
+        }
+
+        .search-section {
+            margin-bottom: 20px;
+        }
+
+        .search-input {
+            width: 70%;
+            padding: 10px;
+            margin-right: 10px;
+        }
+
+        .search-button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .search-button:hover {
+            background-color: #0056b3;
+        }
+
+        .results-section {
+            padding: 20px;
+        }
+
+        .paper-summary {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            margin: 20px auto;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #3498db;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-message {
+            text-align: center;
+            color: #666;
+            margin: 10px 0;
+        }
+
+        .paper-metadata {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 5px;
+        }
+        
+        .paper-categories {
+            margin-top: 10px;
+        }
+        
+        .category-tag {
+            display: inline-block;
+            background: #e1f5fe;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            margin: 2px;
+        }
+    </style>
+</head>
+<body>
+    <h1>ArXiv Paper Summarizer</h1>
+    
+    <div class="container">
+        <div class="paper-list">
+            <h2>Available Papers</h2>
+            <div id="papersList">
+                {% for paper in papers %}
+                <div class="paper-item" data-paper-id="{{ paper.id|string }}">
+                    <div class="paper-title">{{ paper.title }}</div>
+                    <div class="paper-metadata">
+                        Published: {{ paper.published|default('N/A', true) }}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="search-section">
+                <input type="text" id="searchInput" class="search-input" placeholder="Enter a topic to search...">
+                <button onclick="searchPapers()" class="search-button">Search</button>
+            </div>
+
+            <div id="selectedPaperSummary"></div>
+
+            <div class="results-section" id="results">
+                <!-- Search results will be displayed here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let selectedPaper = null;
+
+        function updatePapersList(papers) {
+            const papersList = document.getElementById('papersList');
+            papersList.innerHTML = papers.map(paper => {
+                const paperId = paper.id || paper.paper_id;
+                return `
+                    <div class="paper-item" data-paper-id="${paperId}">
+                        <div class="paper-title">${paper.title}</div>
+                        <div class="paper-metadata">
+                            Published: ${paper.published ? new Date(paper.published).toLocaleDateString() : 'N/A'}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+            
+            // Reattach click handlers
+            attachPaperHandlers();
+        }
+
+        function attachPaperHandlers() {
+            document.querySelectorAll('.paper-item').forEach(item => {
+                const paperId = item.getAttribute('data-paper-id');
+                if (!paperId) {
+                    console.warn('Paper item found without ID:', item);
+                    return;
+                }
+
+                item.addEventListener('click', async (e) => {
+                    console.log('Clicked paper ID:', paperId);
+                    
+                    // Remove active class from previously selected paper
+                    if (selectedPaper) {
+                        selectedPaper.classList.remove('active');
+                    }
+                    
+                    // Add active class to clicked paper
+                    item.classList.add('active');
+                    selectedPaper = item;
+                    
+                    const summaryDiv = document.getElementById('selectedPaperSummary');
+                    
+                    // Show loading state with spinner
+                    summaryDiv.style.display = 'block';
+                    summaryDiv.innerHTML = `
+                        <div class="spinner"></div>
+                        <div class="loading-message">
+                            Fetching paper summary...
+                            <br>
+                            <small>This might take a moment if we need to generate a new summary.</small>
+                        </div>
+                    `;
+                    
+                    try {
+                        const response = await fetch(`/paper_summary/${paperId}`);
+                        
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! status: ${response.status}`);
+                        }
+                        
+                        const data = await response.json();
+                        
+                        if (data.error) {
+                            summaryDiv.innerHTML = `
+                                <div style="color: #856404; background-color: #fff3cd; padding: 15px; border-radius: 5px;">
+                                    ${data.summary}
+                                </div>
+                            `;
+                        } else {
+                            summaryDiv.innerHTML = `
+                                <h3>${data.title}</h3>
+                                <p><strong>Authors:</strong> ${data.authors.join(', ')}</p>
+                                <p><strong>Summary:</strong> ${data.summary}</p>
+                                <p><strong>Published:</strong> ${data.published ? new Date(data.published).toLocaleDateString() : 'N/A'}</p>
+                                ${data.categories ? `
+                                    <div class="paper-categories">
+                                        <strong>Categories:</strong><br>
+                                        ${data.categories.map(cat => `<span class="category-tag">${cat}</span>`).join(' ')}
+                                    </div>
+                                ` : ''}
+                                ${data.journal_ref ? `<p><strong>Journal Reference:</strong> ${data.journal_ref}</p>` : ''}
+                                ${data.doi ? `<p><strong>DOI:</strong> <a href="https://doi.org/${data.doi}" target="_blank">${data.doi}</a></p>` : ''}
+                                ${data.comment ? `<p><strong>Comment:</strong> ${data.comment}</p>` : ''}
+                                <p>
+                                    ${data.url ? `<a href="${data.url}" target="_blank">View on arXiv</a>` : ''}
+                                    ${data.pdf_url ? ` | <a href="${data.pdf_url}" target="_blank">Download PDF</a>` : ''}
+                                </p>
+                            `;
+                        }
+                    } catch (error) {
+                        console.error('Error:', error);
+                        summaryDiv.innerHTML = `
+                            <div style="color: #721c24; background-color: #f8d7da; padding: 15px; border-radius: 5px;">
+                                Error loading paper summary. Please try again later.<br>
+                                <small>Error details: ${error.message}</small>
+                            </div>
+                        `;
+                    }
+                });
+            });
+        }
+
+        // Attach handlers on page load
+        attachPaperHandlers();
+
+        async function searchPapers() {
+            const searchInput = document.getElementById('searchInput');
+            const resultsDiv = document.getElementById('results');
+            const searchButton = document.querySelector('.search-button');
+            
+            try {
+                // Show loading state
+                searchButton.classList.add('loading');
+                searchButton.textContent = 'Searching...';
+                
+                const response = await fetch('/search', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        topic: searchInput.value
+                    })
+                });
+                
+                const data = await response.json();
+                
+                // Update papers list
+                updatePapersList(data.papers);
+                
+                // Display search results
+                resultsDiv.innerHTML = data.summaries.map(paper => `
+                    <div class="paper-summary">
+                        <h3>${paper.title}</h3>
+                        <p><strong>Authors:</strong> ${paper.authors.join(', ')}</p>
+                        <p><strong>Summary:</strong> ${paper.summary}</p>
+                        <p><strong>Published:</strong> ${new Date(paper.published).toLocaleDateString()}</p>
+                        <p><a href="${paper.url}" target="_blank">View on arXiv</a></p>
+                    </div>
+                `).join('');
+                
+            } catch (error) {
+                console.error('Error:', error);
+                resultsDiv.innerHTML = '<p>Error searching papers</p>';
+            } finally {
+                // Reset button state
+                searchButton.classList.remove('loading');
+                searchButton.textContent = 'Search';
+            }
+        }
+
+        // Handle enter key in search input
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                searchPapers();
+            }
+        });
+    </script>
+</body>
+</html> 

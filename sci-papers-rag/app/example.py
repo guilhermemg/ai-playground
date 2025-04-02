@@ -1,4 +1,4 @@
-from main import ArxivPaperSummarizer
+from arxiv_paper_summarizer import ArxivPaperSummarizer
 
 def main():
     summarizer = ArxivPaperSummarizer()
@@ -15,5 +15,6 @@ def main():
         print(f"Published: {summary['published']}")
         print("-" * 80)
 
+    
 if __name__ == "__main__":
     main() 

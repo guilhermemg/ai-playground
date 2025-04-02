@@ -5,4 +5,5 @@ arxiv
 python-dotenv
 openai
 PyMuPDF
-requests 
+requests
+flask 
