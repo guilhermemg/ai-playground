@@ -31,7 +31,8 @@
                          data-paper-id="{{ paper.id|string }}"
                          data-title="{{ paper.title }}"
                          draggable="true"
-                         ondragstart="drag(event)">
+                         ondragstart="drag(event)"
+                         onclick="togglePaperSelection(this)">
                         <div class="paper-title">{{ paper.title }}</div>
                     </div>
                     {% endfor %}
@@ -83,22 +84,36 @@
             <!-- Chat Mode -->
             <div id="chatMode">
                 <div class="chat-container">
-                    <div class="chat-papers-selection">
-                        <h3>Selected Papers for Chat</h3>
-                        <div id="selectedPapersForChat"></div>
+                    <div class="chat-sidebar">
+                        <div class="chat-papers-selection">
+                            <h3>Selected Papers</h3>
+                            <div class="papers-count">
+                                <span id="selectedPapersCount">0</span> papers selected
+                            </div>
+                            <div id="selectedPapersForChat" class="selected-papers-list"></div>
+                        </div>
+                        <div class="chat-instructions">
+                            <h4>How to use Chat Mode</h4>
+                            <ul>
+                                <li>Select papers from the collections panel</li>
+                                <li>Ask questions about the selected papers</li>
+                                <li>Get insights and comparisons</li>
+                            </ul>
+                        </div>
                     </div>
-                    <div class="chat-messages" id="chatMessages"></div>
-                </div>
-                <div class="chat-input-container">
-                    <textarea 
-                        class="chat-input" 
-                        placeholder="Ask a question about the selected papers..."
-                        onkeydown="if(event.key === 'Enter' && !event.shiftKey) { event.preventDefault(); sendMessage(); }">
-                    </textarea>
-                    <button class="search-button" onclick="sendMessage()">
-                        <i class="fas fa-paper-plane"></i>
-                        Send
-                    </button>
+                    <div class="chat-main">
+                        <div class="chat-messages" id="chatMessages"></div>
+                        <div class="chat-input-container">
+                            <textarea 
+                                class="chat-input" 
+                                placeholder="Ask a question about the selected papers..."
+                                onkeydown="if(event.key === 'Enter' && !event.shiftKey) { event.preventDefault(); sendMessage(); }">
+                            </textarea>
+                            <button class="chat-send-button" onclick="sendMessage()">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
