@@ -489,31 +489,65 @@ link.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.
 document.head.appendChild(link);
 
 // Chat functionality
-function sendMessage() {
-    const input = document.querySelector('.chat-input');
-    const message = input.value.trim();
-    if (!message) return;
-
-    // Add user message
-    addMessage(message, 'user');
-
-    // Clear input
-    input.value = '';
-
-    // TODO: Send message to backend and get response
-    // For now, just add a dummy response
-    setTimeout(() => {
-        addMessage('This is a placeholder response. Backend integration needed.', 'assistant');
-    }, 1000);
+function addMessageToChat(message, isUser = false) {
+    const chatMessages = document.getElementById('chatMessages');
+    const messageDiv = document.createElement('div');
+    messageDiv.className = `message ${isUser ? 'user-message' : 'assistant-message'}`;
+    messageDiv.textContent = message;
+    chatMessages.appendChild(messageDiv);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
 }
 
-function addMessage(text, type) {
-    const messagesContainer = document.getElementById('chatMessages');
-    const messageDiv = document.createElement('div');
-    messageDiv.className = `message ${type}-message`;
-    messageDiv.textContent = text;
-    messagesContainer.appendChild(messageDiv);
-    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+async function sendMessage() {
+    const textarea = document.querySelector('.chat-input');
+    const message = textarea.value.trim();
+    
+    if (!message) return;
+    
+    if (selectedPapers.size === 0) {
+        addMessageToChat('Please select at least one paper to discuss.', false);
+        return;
+    }
+
+    // Clear input
+    textarea.value = '';
+
+    // Add user message to chat
+    addMessageToChat(message, true);
+
+    // Add loading indicator
+    const loadingDiv = document.createElement('div');
+    loadingDiv.className = 'message assistant-message loading';
+    loadingDiv.innerHTML = '<div class="typing-indicator"><span></span><span></span><span></span></div>';
+    document.getElementById('chatMessages').appendChild(loadingDiv);
+
+    try {
+        const response = await fetch('/chat', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                message: message,
+                paperIds: Array.from(selectedPapers)
+            })
+        });
+
+        const data = await response.json();
+        
+        // Remove loading indicator
+        loadingDiv.remove();
+
+        if (data.error) {
+            addMessageToChat('Error: ' + data.message, false);
+        } else {
+            addMessageToChat(data.response, false);
+        }
+    } catch (error) {
+        loadingDiv.remove();
+        addMessageToChat('Error sending message. Please try again.', false);
+        console.error('Chat error:', error);
+    }
 }
 
 function addPaperToChatSelection(paperId, paperTitle) {

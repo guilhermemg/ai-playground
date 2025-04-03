@@ -1,6 +1,7 @@
 from flask import Flask, render_template, jsonify, request, redirect, send_from_directory
 from arxiv_paper_summarizer import ArxivPaperSummarizer
 import logging
+import json
 
 # Change logging level to ERROR to reduce verbosity
 logging.basicConfig(level=logging.ERROR)
@@ -83,6 +84,70 @@ def process_paper(paper_id):
         return jsonify({
             "error": True,
             "message": str(e)
+        }), 500
+
+@app.route('/chat', methods=['POST'])
+def chat():
+    try:
+        data = request.json
+        message = data.get('message')
+        paper_ids = data.get('paperIds', [])
+        
+        if not message or not paper_ids:
+            return jsonify({
+                'error': True,
+                'message': 'Message and selected papers are required'
+            }), 400
+
+        # Get papers content and context
+        papers_context = []
+        for paper_id in paper_ids:
+            paper = summarizer.get_paper_by_id(paper_id)
+            if paper:
+                papers_context.append({
+                    'title': paper['title'],
+                    'summary': paper['summary'],
+                    'content': paper.get('content')
+                })
+
+        if not papers_context:
+            return jsonify({
+                'error': True,
+                'message': 'No valid papers found'
+            }), 404
+
+        # Prepare system message with papers context
+        system_message = """You are a helpful AI research assistant. You have access to the following papers:
+        
+        {}
+        
+        Please help answer questions about these papers. Base your answers on the papers' content and summaries. 
+        If you're unsure about something, say so.""".format(
+            "\n\n".join([
+                f"Paper: {p['title']}\nSummary: {p['summary']}\n" + 
+                (f"Content: {p['content'][:1000]}..." if p['content'] else "")
+                for p in papers_context
+            ])
+        )
+
+        # Get response from chat model
+        messages = [
+            {"role": "system", "content": system_message},
+            {"role": "user", "content": message}
+        ]
+        
+        response = summarizer.chat_about_papers(messages)
+
+        return jsonify({
+            'response': response,
+            'error': False
+        })
+
+    except Exception as e:
+        print(f"Error processing chat: {str(e)}")
+        return jsonify({
+            'error': True,
+            'message': f'Error processing chat: {str(e)}'
         }), 500
 
 @app.route('/static/<path:path>')

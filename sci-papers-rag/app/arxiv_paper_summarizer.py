@@ -9,6 +9,7 @@ from dotenv import load_dotenv
 from utils.pdf_processor import PDFProcessor
 import os
 import json
+from openai import OpenAI
 
 # Load environment variables
 load_dotenv()
@@ -25,6 +26,7 @@ class ArxivPaperSummarizer:
         # Create data directory if it doesn't exist
         self.data_dir = os.path.join(os.path.dirname(__file__), "data")
         os.makedirs(self.data_dir, exist_ok=True)
+        self.client = OpenAI(api_key=os.getenv('OPENAI_API_KEY'))
 
     def get_stored_papers(self) -> List[Dict]:
         """Get list of papers stored locally with their metadata"""
@@ -340,3 +342,50 @@ class ArxivPaperSummarizer:
                     print(f"Error reading {file}: {e}")
                 
         return results 
+
+    def chat_about_papers(self, messages):
+        try:
+            response = self.client.chat.completions.create(
+                model="gpt-4",  # or your preferred model
+                messages=messages,
+                temperature=0.7,
+                max_tokens=1000
+            )
+            return response.choices[0].message.content
+        except Exception as e:
+            print(f"Error in chat_about_papers: {str(e)}")
+            raise
+
+    def get_paper_by_id(self, paper_id):
+        """Get paper data by ID from stored metadata"""
+        try:
+            # Get metadata from JSON file
+            metadata_file = os.path.join(self.data_dir, f"{paper_id}.json")
+            if os.path.exists(metadata_file):
+                with open(metadata_file, 'r') as f:
+                    metadata = json.load(f)
+                
+                # Get PDF text if available
+                pdf_file = os.path.join(self.data_dir, f"{paper_id}.pdf")
+                content = None
+                if os.path.exists(pdf_file):
+                    text = PDFProcessor.extract_text_from_file(pdf_file)
+                    content = PDFProcessor.clean_text(text)
+                
+                return {
+                    'id': metadata.get('id'),
+                    'title': metadata.get('title'),
+                    'summary': metadata.get('summary'),
+                    'content': content,
+                    'authors': metadata.get('authors', []),
+                    'published': metadata.get('published'),
+                    'url': metadata.get('url'),
+                    'pdf_url': metadata.get('pdf_url')
+                }
+            else:
+                print(f"No metadata found for paper {paper_id}")
+                return None
+            
+        except Exception as e:
+            print(f"Error getting paper {paper_id}: {str(e)}")
+            return None 
