@@ -389,3 +389,56 @@ class ArxivPaperSummarizer:
         except Exception as e:
             print(f"Error getting paper {paper_id}: {str(e)}")
             return None 
+
+    def save_paper_metadata(self, paper_id: str, metadata: dict):
+        """Save paper metadata to JSON file"""
+        metadata_file = os.path.join(self.data_dir, f"{paper_id}.json")
+        with open(metadata_file, 'w', encoding='utf-8') as f:
+            json.dump(metadata, f, ensure_ascii=False, indent=2)
+
+    def save_paper_text(self, paper_id: str, text: str):
+        """Save paper text content to TXT file"""
+        text_file = os.path.join(self.data_dir, f"{paper_id}.txt")
+        with open(text_file, 'w', encoding='utf-8') as f:
+            f.write(text)
+
+    async def process_paper(self, paper_id: str):
+        """Process a paper: download PDF, extract text, and save metadata"""
+        try:
+            # Get paper metadata from arXiv
+            search = arxiv.Search(id_list=[paper_id])
+            paper = next(search.results())
+            
+            # Download PDF and extract text
+            pdf_path = os.path.join(self.data_dir, f"{paper_id}.pdf")
+            paper.download_pdf(filename=pdf_path)
+            
+            # Extract text from PDF
+            text = PDFProcessor.extract_text_from_file(pdf_path)
+            cleaned_text = PDFProcessor.clean_text(text)
+            
+            # Save text content
+            self.save_paper_text(paper_id, cleaned_text)
+            
+            # Prepare and save metadata
+            metadata = {
+                'id': paper_id,
+                'title': paper.title,
+                'authors': [author.name for author in paper.authors],
+                'summary': paper.summary,
+                'published': paper.published.isoformat(),
+                'url': paper.entry_id,
+                'pdf_url': paper.pdf_url,
+                'categories': paper.categories
+            }
+            self.save_paper_metadata(paper_id, metadata)
+            
+            # Optionally remove PDF after processing
+            if os.path.exists(pdf_path):
+                os.remove(pdf_path)
+            
+            return metadata
+            
+        except Exception as e:
+            print(f"Error processing paper {paper_id}: {e}")
+            raise 

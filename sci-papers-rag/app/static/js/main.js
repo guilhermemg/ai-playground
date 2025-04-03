@@ -489,11 +489,34 @@ link.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.
 document.head.appendChild(link);
 
 // Chat functionality
-function addMessageToChat(message, isUser = false) {
+async function addMessageToChat(message, isUser = false, sources = []) {
     const chatMessages = document.getElementById('chatMessages');
     const messageDiv = document.createElement('div');
     messageDiv.className = `message ${isUser ? 'user-message' : 'assistant-message'}`;
-    messageDiv.textContent = message;
+    
+    // Create message content
+    const messageContent = document.createElement('div');
+    messageContent.className = 'message-content';
+    messageContent.textContent = message;
+    messageDiv.appendChild(messageContent);
+    
+    // Add sources if available
+    if (!isUser && sources && sources.length > 0) {
+        const sourcesDiv = document.createElement('div');
+        sourcesDiv.className = 'message-sources';
+        sourcesDiv.innerHTML = `
+            <div class="sources-header">Sources:</div>
+            <div class="sources-list">
+                ${sources.map(source => `
+                    <div class="source-item">
+                        <span class="source-title">${source.title}</span>
+                    </div>
+                `).join('')}
+            </div>
+        `;
+        messageDiv.appendChild(sourcesDiv);
+    }
+    
     chatMessages.appendChild(messageDiv);
     chatMessages.scrollTop = chatMessages.scrollHeight;
 }
@@ -521,6 +544,9 @@ async function sendMessage() {
     loadingDiv.innerHTML = '<div class="typing-indicator"><span></span><span></span><span></span></div>';
     document.getElementById('chatMessages').appendChild(loadingDiv);
 
+    // Scroll to the loading indicator
+    loadingDiv.scrollIntoView({ behavior: 'smooth', block: 'end' });
+
     try {
         const response = await fetch('/chat', {
             method: 'POST',
@@ -541,8 +567,13 @@ async function sendMessage() {
         if (data.error) {
             addMessageToChat('Error: ' + data.message, false);
         } else {
-            addMessageToChat(data.response, false);
+            addMessageToChat(data.response, false, data.sources);
         }
+
+        // Scroll to the latest message
+        const chatMessages = document.getElementById('chatMessages');
+        chatMessages.lastElementChild.scrollIntoView({ behavior: 'smooth', block: 'end' });
+
     } catch (error) {
         loadingDiv.remove();
         addMessageToChat('Error sending message. Please try again.', false);

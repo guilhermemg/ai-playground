@@ -171,3 +171,4 @@ cython_debug/
 .pypirc
 .vscode/settings.json
 sci-papers-rag/src/chroma_db/chroma.sqlite3
+sci-papers-rag/backup/src/chroma_db/chroma.sqlite3

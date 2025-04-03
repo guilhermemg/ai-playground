@@ -1,9 +1,12 @@
-langchain
+langchain==0.1.0
 langgraph
-chromadb
+chromadb==0.4.22
 arxiv
-python-dotenv
+python-dotenv==1.0.0
 openai
 PyMuPDF
 requests
-flask 
+flask==3.0.0
+langchain-openai==0.0.5
+tiktoken==0.5.2
+unstructured==0.11.6 
