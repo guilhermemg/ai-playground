@@ -45,6 +45,25 @@
 - Advanced NLP techniques
 - Intelligent agent design
 
+### 3. [Contracts Compliance Checker](./contracts-compliance-checker/)
+**Technical Highlights:**
+- Automated contract risk analysis against 15 compliance rules
+- Structured LLM outputs with Pydantic validation
+- Canary deployment for A/B testing prompt versions
+- Production-ready logging and metrics comparison
+
+**Key Technologies:**
+- LangChain
+- GPT-3.5-Turbo
+- Pydantic structured outputs
+- LLMOps practices (prompt versioning, canary deployments, regression testing)
+
+**LLMOps Features:**
+- 📊 **Canary Deployment**: Gradual rollout of new prompts with traffic splitting
+- 📈 **Metrics Tracking**: Latency, risk detection rates, severity breakdown
+- 🧪 **51 Automated Tests**: Schema, pipeline, regression, and canary tests
+- 📝 **Prompt Versioning**: v1 (basic) and v2 (chain-of-thought reasoning)
+
 ## 🛠 Technical Stack
 
 ### Languages & Frameworks
@@ -56,15 +75,17 @@
 ![OpenAI](https://img.shields.io/badge/OpenAI-412991?style=flat-square&logo=openai&logoColor=white)
 ![Pydantic](https://img.shields.io/badge/Pydantic-E92063?style=flat-square)
 
-### DevOps
+### DevOps & LLMOps
 ![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white)
+![Pytest](https://img.shields.io/badge/Pytest-0A9EDC?style=flat-square&logo=pytest&logoColor=white)
 
 ## 🚀 Future Roadmap
 
 - Expand agent capabilities
 - Implement multi-model support
 - Develop more domain-specific AI assistants
-- Enhance MLOps integration
+- Automated prompt optimization based on A/B testing metrics
+- RAG-based document analysis
 
 ## 🤝 Collaboration & Contributions
 

@@ -1,0 +1,109 @@
+{
+  "rules": [
+    {
+      "id": "GDPR-001",
+      "category": "Data Protection",
+      "name": "Data Processing Consent",
+      "description": "Data processing agreements must require explicit consent for sub-processor engagement",
+      "severity": "high"
+    },
+    {
+      "id": "GDPR-002",
+      "category": "Data Protection",
+      "name": "Data Transfer Restrictions",
+      "description": "International data transfers must comply with adequacy requirements or have appropriate safeguards",
+      "severity": "high"
+    },
+    {
+      "id": "GDPR-003",
+      "category": "Data Protection",
+      "name": "Data Retention Limits",
+      "description": "Contracts must specify clear data retention periods with justification",
+      "severity": "medium"
+    },
+    {
+      "id": "GDPR-004",
+      "category": "Data Protection",
+      "name": "Privacy Notice",
+      "description": "Customer data usage must be clearly disclosed and limited to stated purposes",
+      "severity": "high"
+    },
+    {
+      "id": "CONTRACT-001",
+      "category": "Contract Fairness",
+      "name": "Unilateral Price Changes",
+      "description": "Contracts should not allow unilateral price changes without notice period",
+      "severity": "medium"
+    },
+    {
+      "id": "CONTRACT-002",
+      "category": "Contract Fairness",
+      "name": "One-sided Indemnification",
+      "description": "Indemnification clauses should not cover the indemnified party's own negligence",
+      "severity": "high"
+    },
+    {
+      "id": "CONTRACT-003",
+      "category": "Contract Fairness",
+      "name": "Unlimited Liability Waiver",
+      "description": "Complete liability waivers may be unenforceable and should have reasonable limits",
+      "severity": "medium"
+    },
+    {
+      "id": "CONTRACT-004",
+      "category": "Contract Fairness",
+      "name": "Assignment Without Consent",
+      "description": "Contracts should require consent for assignment to protect party interests",
+      "severity": "low"
+    },
+    {
+      "id": "EMPLOYMENT-001",
+      "category": "Employment Law",
+      "name": "At-Will Termination Notice",
+      "description": "Employment contracts should provide reasonable notice periods for termination",
+      "severity": "medium"
+    },
+    {
+      "id": "EMPLOYMENT-002",
+      "category": "Employment Law",
+      "name": "Excessive Non-Compete",
+      "description": "Non-compete clauses must be reasonable in duration and geographic scope",
+      "severity": "high"
+    },
+    {
+      "id": "EMPLOYMENT-003",
+      "category": "Employment Law",
+      "name": "Mandatory Arbitration",
+      "description": "Mandatory arbitration clauses may limit employee rights and should be disclosed",
+      "severity": "medium"
+    },
+    {
+      "id": "SLA-001",
+      "category": "Service Levels",
+      "name": "Uptime Guarantees",
+      "description": "SaaS agreements should include binding uptime commitments with remedies",
+      "severity": "medium"
+    },
+    {
+      "id": "SLA-002",
+      "category": "Service Levels",
+      "name": "Data Location Disclosure",
+      "description": "Cloud services must disclose specific data storage locations for compliance",
+      "severity": "medium"
+    },
+    {
+      "id": "FINANCIAL-001",
+      "category": "Financial Terms",
+      "name": "Refund Policy",
+      "description": "Prepaid services should have fair cancellation and refund policies",
+      "severity": "low"
+    },
+    {
+      "id": "FINANCIAL-002",
+      "category": "Financial Terms",
+      "name": "Expense Documentation",
+      "description": "Expense reimbursement should require reasonable documentation",
+      "severity": "low"
+    }
+  ]
+}

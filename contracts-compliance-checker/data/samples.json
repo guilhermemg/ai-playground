@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "title": "Software License Agreement - TechCorp",
+    "text": "SOFTWARE LICENSE AGREEMENT\n\nThis Software License Agreement ('Agreement') is entered into as of January 15, 2026.\n\nLICENSE GRANT: TechCorp grants Customer a non-exclusive license to use the Software.\n\nPAYMENT: Customer shall pay all fees within 30 days of invoice.\n\nTERMINATION: Either party may terminate with 30 days written notice.\n\nLIMITATION OF LIABILITY: TechCorp shall not be liable for any damages whatsoever.\n\nGOVERNING LAW: This Agreement shall be governed by the laws of Delaware."
+  },
+  {
+    "id": 2,
+    "title": "Data Processing Agreement - CloudServe Inc",
+    "text": "DATA PROCESSING AGREEMENT\n\nThis Data Processing Agreement ('DPA') is entered into between CloudServe Inc ('Processor') and Client ('Controller').\n\nDATA PROCESSING: Processor will process personal data only on documented instructions from Controller.\n\nSUB-PROCESSORS: Processor may engage sub-processors without prior consent from Controller.\n\nDATA TRANSFERS: Personal data may be transferred to any country where Processor operates.\n\nSECURITY: Processor will implement appropriate technical measures.\n\nBREACH NOTIFICATION: Processor will notify Controller of any data breach.\n\nDATA RETENTION: Data will be retained for business purposes."
+  },
+  {
+    "id": 3,
+    "title": "Employment Contract - Acme Corp",
+    "text": "EMPLOYMENT AGREEMENT\n\nThis Employment Agreement is made between Acme Corp ('Employer') and John Smith ('Employee').\n\nPOSITION: Employee is hired as Senior Developer.\n\nCOMPENSATION: Employee shall receive $120,000 annually, paid bi-weekly.\n\nBENEFITS: Employee is eligible for health insurance after 90 days.\n\nTERMINATION: Employer may terminate employment at any time without cause or notice.\n\nNON-COMPETE: Employee agrees not to work for any competitor for 5 years after termination, anywhere in the world.\n\nINTELLECTUAL PROPERTY: All work product belongs to Employer.\n\nDISPUTE RESOLUTION: All disputes will be resolved through binding arbitration."
+  },
+  {
+    "id": 4,
+    "title": "Vendor Services Agreement - SupplyChain Pro",
+    "text": "VENDOR SERVICES AGREEMENT\n\nThis Agreement is between SupplyChain Pro ('Vendor') and Buyer Corp ('Buyer').\n\nSERVICES: Vendor will provide logistics and warehousing services.\n\nPRICING: Prices are subject to change at any time without notice.\n\nINDEMNIFICATION: Buyer shall indemnify Vendor against all claims, including those arising from Vendor's negligence.\n\nFORCE MAJEURE: Vendor is excused from performance for any reason beyond its control.\n\nINSURANCE: Buyer shall maintain adequate insurance coverage.\n\nCONFIDENTIALITY: Both parties agree to keep confidential information private.\n\nASSIGNMENT: Vendor may assign this agreement without consent."
+  },
+  {
+    "id": 5,
+    "title": "SaaS Subscription Agreement - DataFlow",
+    "text": "SAAS SUBSCRIPTION AGREEMENT\n\nThis Subscription Agreement governs use of DataFlow's cloud services.\n\nSUBSCRIPTION: Customer subscribes to the Professional tier for 12 months.\n\nFEES: $500/month, billed annually in advance. No refunds for early termination.\n\nDATA OWNERSHIP: Customer retains ownership of their data.\n\nDATA LOCATION: Data will be stored in our global data centers.\n\nUPTIME: DataFlow targets 99% uptime but makes no guarantees.\n\nSECURITY: DataFlow implements industry-standard security practices.\n\nPRIVACY: Customer data may be used to improve our services.\n\nTERMINATION: Upon termination, data will be deleted within 90 days."
+  },
+  {
+    "id": 6,
+    "title": "Consulting Agreement - Strategy Partners",
+    "text": "CONSULTING SERVICES AGREEMENT\n\nThis Agreement is between Strategy Partners LLC ('Consultant') and Client Corp ('Client').\n\nSERVICES: Consultant will provide strategic advisory services as mutually agreed.\n\nCOMPENSATION: Client shall pay $300/hour for all services rendered.\n\nEXPENSES: Client will reimburse all reasonable expenses without requiring receipts.\n\nCONFIDENTIALITY: Consultant agrees to keep Client information confidential for 1 year.\n\nINDEPENDENT CONTRACTOR: Consultant is an independent contractor.\n\nTERM: This agreement is effective until terminated by either party.\n\nLIABILITY: Consultant's liability is limited to fees paid in the last 30 days.\n\nNO WARRANTIES: Services are provided 'as-is' without any warranties."
+  }
+]
