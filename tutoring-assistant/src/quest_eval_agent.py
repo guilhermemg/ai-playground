@@ -1,9 +1,12 @@
 
+import warnings
+warnings.filterwarnings("ignore", category=DeprecationWarning)
+
 from typing import Dict, Any
 
-from langchain.chains import LLMChain
-from langchain.prompts import PromptTemplate
-from langchain.tools import Tool
+from langchain_classic.chains import LLMChain
+from langchain_classic.prompts import PromptTemplate
+from langchain_classic.tools import Tool
 
 
 from generic_agent import GenericAgent

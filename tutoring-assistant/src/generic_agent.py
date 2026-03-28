@@ -1,9 +1,13 @@
 
+import warnings
+warnings.filterwarnings("ignore", category=DeprecationWarning)
+
 from typing import List
 
-from langchain.agents import load_tools
-from langchain.agents import ZeroShotAgent, Tool, ZeroShotAgent, AgentExecutor
-from langchain.chains import LLMChain
+from langchain_community.agent_toolkits.load_tools import load_tools
+from langchain_classic.agents import ZeroShotAgent, AgentExecutor
+from langchain_classic.chains import LLMChain
+from langchain_classic.tools import Tool
 
 
 class GenericAgent:
@@ -33,5 +37,7 @@ class GenericAgent:
         return AgentExecutor.from_agent_and_tools(
             agent=agent,
             tools=tools,
-            verbose=True
+            verbose=True,
+            handle_parsing_errors=True,
+            max_iterations=5,
         )

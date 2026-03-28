@@ -1,7 +1,7 @@
 
-from langchain.prompts import PromptTemplate
-from langchain.chains import LLMChain
-from langchain.tools import Tool
+from langchain_classic.prompts import PromptTemplate
+from langchain_classic.chains import LLMChain
+from langchain_classic.tools import Tool
 
 
 from generic_agent import GenericAgent

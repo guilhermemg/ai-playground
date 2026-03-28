@@ -1,4 +1,4 @@
-from langchain.chat_models import ChatOpenAI
+from langchain_openai import ChatOpenAI
 from typing import Dict, Any
 
 import os
@@ -7,6 +7,7 @@ _ = load_dotenv(find_dotenv()) # read local .env file
 
 import warnings
 warnings.filterwarnings("ignore")
+warnings.filterwarnings("ignore", category=DeprecationWarning)
 
 
 from subj_expert_agent import SubjectExpertAgent
@@ -48,13 +49,14 @@ class TutoringSystem:
         """Public method to evaluate a questionnaire"""
         
         # Get detailed feedback
-        evaluation = self.questionnaire_evaluator.run(
-            f"""Generate comprehensive feedback for this questionnaire {questionnaire}. 
+        result = self.questionnaire_evaluator.invoke({
+            "input": f"""Generate comprehensive feedback for this questionnaire {questionnaire}. 
             
             The questionnaire and the student answers are delimitted by #####.
 
             Provide detailed evaluation results, feedback and a final score calculated as a percentage."""
-        )
+        })
+        evaluation = result["output"]
         
         return evaluation
 
