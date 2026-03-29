@@ -1,0 +1,70 @@
+Pharmacology Basics: Mechanisms of Drug Action
+
+1. PHARMACODYNAMICS - HOW DRUGS ACT ON THE BODY
+
+1.1 Drug-Receptor Interactions
+Most drugs produce their effects by interacting with specific macromolecular components of the organism called receptors. Receptors are protein molecules located on cell surfaces or within cells that bind drugs and mediate their pharmacological effects.
+
+The four major receptor families are:
+- Ligand-gated ion channels (e.g., nicotinic acetylcholine receptor)
+- G-protein coupled receptors (GPCRs, e.g., beta-adrenergic receptors)
+- Enzyme-linked receptors (e.g., insulin receptor)
+- Nuclear receptors (e.g., steroid hormone receptors)
+
+1.2 Agonists and Antagonists
+An agonist is a drug that binds to a receptor and activates it, producing a biological response. A full agonist produces the maximum response the receptor system is capable of. A partial agonist produces a submaximal response even at full receptor occupancy.
+
+An antagonist is a drug that binds to a receptor but does not activate it. Instead, it blocks the receptor and prevents agonists from binding. Competitive antagonists can be overcome by increasing the concentration of the agonist. Non-competitive antagonists cannot be overcome regardless of agonist concentration.
+
+1.3 Dose-Response Relationships
+The dose-response curve describes the relationship between drug dose and the magnitude of effect. Key parameters include:
+- EC50: The concentration of drug that produces 50% of the maximum effect
+- Emax: The maximum effect achievable with the drug
+- Potency: Related to the EC50; a more potent drug achieves its effect at a lower concentration
+- Efficacy: The maximum effect a drug can produce, regardless of dose
+
+2. PHARMACOKINETICS - HOW THE BODY ACTS ON DRUGS
+
+2.1 Absorption
+Absorption is the process by which a drug enters the bloodstream from its site of administration. Factors affecting absorption include:
+- Route of administration (oral, intravenous, subcutaneous, etc.)
+- Drug solubility and ionization
+- Blood flow to the absorption site
+- Surface area available for absorption
+
+2.2 Distribution
+After absorption, drugs are distributed throughout the body via the bloodstream. Distribution depends on:
+- Blood flow to tissues
+- Drug binding to plasma proteins (mainly albumin)
+- Lipid solubility of the drug
+- Tissue binding and storage
+
+2.3 Metabolism (Biotransformation)
+Most drugs are metabolized in the liver by cytochrome P450 enzymes. Metabolism typically converts lipophilic drugs into more hydrophilic metabolites that can be excreted by the kidneys. Phase I reactions (oxidation, reduction, hydrolysis) and Phase II reactions (conjugation) are the two main types.
+
+2.4 Excretion
+The kidneys are the primary organ of drug excretion. Drugs and their metabolites are filtered at the glomerulus and may be secreted or reabsorbed in the tubules. Other routes of excretion include bile, lungs, sweat, and breast milk.
+
+3. COMMON DRUG CLASSES
+
+3.1 NSAIDs (Non-Steroidal Anti-Inflammatory Drugs)
+NSAIDs work by inhibiting cyclooxygenase (COX) enzymes, which are responsible for the synthesis of prostaglandins. Prostaglandins mediate inflammation, pain, and fever. Aspirin irreversibly inhibits COX-1 and COX-2, while most other NSAIDs are reversible inhibitors. COX-2 selective inhibitors (e.g., celecoxib) were developed to reduce gastrointestinal side effects.
+
+3.2 Antibiotics
+Antibiotics are classified by their mechanism of action:
+- Cell wall synthesis inhibitors: Penicillins, cephalosporins, carbapenems, vancomycin
+- Protein synthesis inhibitors: Aminoglycosides, tetracyclines, macrolides, chloramphenicol
+- DNA synthesis inhibitors: Fluoroquinolones, metronidazole
+- Folate synthesis inhibitors: Sulfonamides, trimethoprim
+- Cell membrane disruptors: Polymyxins, daptomycin
+
+3.3 Antihypertensives
+Major classes of antihypertensive drugs include:
+- ACE inhibitors (e.g., enalapril): Block conversion of angiotensin I to angiotensin II
+- ARBs (e.g., losartan): Block angiotensin II receptors
+- Calcium channel blockers (e.g., amlodipine): Reduce calcium entry into vascular smooth muscle
+- Beta-blockers (e.g., metoprolol): Block beta-adrenergic receptors in the heart
+- Diuretics (e.g., hydrochlorothiazide): Increase renal sodium and water excretion
+
+Source: This content is based on publicly available pharmacology educational resources and textbooks.
+License: This document is provided for educational purposes.

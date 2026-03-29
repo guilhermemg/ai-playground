@@ -1,0 +1,23 @@
+{
+  "domain": "medicine",
+  "questions": [
+    {
+      "question": "What is the mechanism of action of aspirin?",
+      "ground_truth": "Aspirin (acetylsalicylic acid) irreversibly inhibits cyclooxygenase enzymes (COX-1 and COX-2), preventing the synthesis of prostaglandins and thromboxane A2. This results in anti-inflammatory, analgesic, antipyretic, and antiplatelet effects.",
+      "expected_agent": "medicine",
+      "contexts": ["Aspirin acts by irreversibly acetylating the cyclooxygenase (COX) enzymes."]
+    },
+    {
+      "question": "Describe the pathophysiology of Type 2 Diabetes Mellitus.",
+      "ground_truth": "Type 2 Diabetes Mellitus is characterized by insulin resistance in peripheral tissues (muscle, liver, adipose) and progressive beta-cell dysfunction leading to relative insulin deficiency. Hyperglycemia results from increased hepatic glucose production, decreased glucose uptake in muscles, and impaired insulin secretion.",
+      "expected_agent": "medicine",
+      "contexts": ["Type 2 diabetes involves a combination of insulin resistance and beta-cell failure."]
+    },
+    {
+      "question": "What are the main differences between Gram-positive and Gram-negative bacteria?",
+      "ground_truth": "Gram-positive bacteria have a thick peptidoglycan cell wall that retains the crystal violet stain (appearing purple). Gram-negative bacteria have a thin peptidoglycan layer surrounded by an outer membrane containing lipopolysaccharide (LPS), staining pink with safranin. Gram-negative bacteria are generally more resistant to antibiotics due to their outer membrane.",
+      "expected_agent": "medicine",
+      "contexts": ["The Gram stain differentiates bacteria based on cell wall composition."]
+    }
+  ]
+}

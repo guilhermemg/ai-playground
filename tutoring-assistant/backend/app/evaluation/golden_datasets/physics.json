@@ -1,0 +1,23 @@
+{
+  "domain": "physics",
+  "questions": [
+    {
+      "question": "State Newton's three laws of motion.",
+      "ground_truth": "1) An object at rest stays at rest, and an object in motion stays in uniform motion, unless acted upon by a net external force (Law of Inertia). 2) The acceleration of an object is directly proportional to the net force acting on it and inversely proportional to its mass: F = ma. 3) For every action, there is an equal and opposite reaction.",
+      "expected_agent": "physics",
+      "contexts": ["Newton's laws of motion form the foundation of classical mechanics."]
+    },
+    {
+      "question": "Explain the photoelectric effect and its significance.",
+      "ground_truth": "The photoelectric effect is the emission of electrons from a metal surface when light of sufficient frequency strikes it. Einstein explained it by proposing that light consists of quanta (photons), each with energy E = hf. Electrons are ejected only when the photon energy exceeds the work function of the metal. This was significant because it provided evidence for the quantum nature of light.",
+      "expected_agent": "physics",
+      "contexts": ["Einstein's explanation of the photoelectric effect was key evidence for quantum theory."]
+    },
+    {
+      "question": "What is the difference between kinetic and potential energy?",
+      "ground_truth": "Kinetic energy is the energy of motion, given by KE = (1/2)mv^2, where m is mass and v is velocity. Potential energy is stored energy due to an object's position or configuration, such as gravitational PE = mgh (where h is height) or elastic PE = (1/2)kx^2. Total mechanical energy is conserved in the absence of non-conservative forces.",
+      "expected_agent": "physics",
+      "contexts": ["Energy exists in two fundamental forms: kinetic (motion) and potential (position)."]
+    }
+  ]
+}

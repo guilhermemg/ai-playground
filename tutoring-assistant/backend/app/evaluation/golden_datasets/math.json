@@ -1,0 +1,17 @@
+{
+  "domain": "math",
+  "questions": [
+    {
+      "question": "What is the Fundamental Theorem of Calculus?",
+      "ground_truth": "The Fundamental Theorem of Calculus links differentiation and integration. Part 1 states that if F(x) = integral from a to x of f(t)dt, then F'(x) = f(x). Part 2 states that the definite integral from a to b of f(x)dx equals F(b) - F(a), where F is any antiderivative of f.",
+      "expected_agent": "math",
+      "contexts": ["The Fundamental Theorem of Calculus establishes the inverse relationship between differentiation and integration."]
+    },
+    {
+      "question": "Explain what eigenvalues and eigenvectors are in linear algebra.",
+      "ground_truth": "For a square matrix A, an eigenvector v is a non-zero vector that, when multiplied by A, results in a scalar multiple of itself: Av = λv. The scalar λ is the eigenvalue. Eigenvalues are found by solving det(A - λI) = 0. Eigenvectors represent directions that are preserved under the linear transformation, and eigenvalues represent the scaling factors along those directions.",
+      "expected_agent": "math",
+      "contexts": ["Eigenvalues and eigenvectors characterize how a linear transformation acts on certain directions."]
+    }
+  ]
+}

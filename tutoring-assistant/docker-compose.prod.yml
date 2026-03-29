@@ -1,0 +1,79 @@
+version: "3.9"
+
+services:
+  backend:
+    image: tutoring-backend:1.0.0-prompt-v1
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env.prod
+    environment:
+      - DATABASE_URL=postgresql+asyncpg://postgres:${POSTGRES_PASSWORD}@postgres:5432/tutoring
+      - DATABASE_URL_SYNC=postgresql://postgres:${POSTGRES_PASSWORD}@postgres:5432/tutoring
+      - OTEL_EXPORTER_OTLP_ENDPOINT=http://jaeger:4317
+    volumes:
+      - uploads:/app/uploads
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: always
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+          cpus: "2.0"
+
+  frontend:
+    image: tutoring-frontend:1.0.0
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    restart: always
+
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: tutoring
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    restart: always
+
+  jaeger:
+    image: jaegertracing/all-in-one:1.62
+    environment:
+      - COLLECTOR_OTLP_ENABLED=true
+    ports:
+      - "16686:16686"
+      - "4317:4317"
+    restart: always
+
+  prometheus:
+    image: prom/prometheus:v2.54.1
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus_data:/prometheus
+    restart: always
+
+  grafana:
+    image: grafana/grafana:11.3.0
+    ports:
+      - "3001:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_PASSWORD}
+    volumes:
+      - grafana_data:/var/lib/grafana
+    restart: always
+
+volumes:
+  pgdata:
+  uploads:
+  prometheus_data:
+  grafana_data:

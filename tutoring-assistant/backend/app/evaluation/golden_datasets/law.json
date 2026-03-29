@@ -1,0 +1,17 @@
+{
+  "domain": "law",
+  "questions": [
+    {
+      "question": "What is the difference between civil law and common law legal systems?",
+      "ground_truth": "Civil law systems (used in continental Europe, Latin America, etc.) are based on comprehensive written codes and statutes as the primary source of law. Judges apply the code to cases. Common law systems (UK, US, Australia, etc.) rely heavily on judicial precedent (stare decisis) where past court decisions bind future cases. Common law evolves through case law, while civil law evolves through legislative amendments.",
+      "expected_agent": "law",
+      "contexts": ["The distinction between civil and common law represents two major legal traditions globally."]
+    },
+    {
+      "question": "Explain the concept of habeas corpus.",
+      "ground_truth": "Habeas corpus (Latin for 'you shall have the body') is a legal principle that protects against unlawful detention. It requires a person under arrest to be brought before a judge or court to determine whether the detention is lawful. It is a fundamental right in many constitutions and international human rights instruments, serving as a safeguard against arbitrary imprisonment.",
+      "expected_agent": "law",
+      "contexts": ["Habeas corpus is one of the oldest and most important writs in common law."]
+    }
+  ]
+}
