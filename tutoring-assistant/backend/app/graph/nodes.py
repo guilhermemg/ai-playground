@@ -82,8 +82,9 @@ def _parse_agent_output(raw_output: str) -> tuple[str, bool | None, str | None]:
 
     try:
         parsed = json.loads(text)
-        feedback = parsed.get("feedback", "")
-        correct_answer = parsed.get("correct_answer")
+        feedback = str(parsed.get("feedback", ""))
+        raw_answer = parsed.get("correct_answer")
+        correct_answer = str(raw_answer) if raw_answer is not None else None
 
         if "is_correct" in parsed:
             is_correct = bool(parsed["is_correct"])

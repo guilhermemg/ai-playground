@@ -17,6 +17,7 @@ class PineconeRetriever:
         settings = get_settings()
         self.embeddings = OpenAIEmbeddings(
             model=settings.openai_embedding_model,
+            dimensions=settings.pinecone_dimension,
             api_key=settings.openai_api_key,
         )
         self.pc = Pinecone(api_key=settings.pinecone_api_key)

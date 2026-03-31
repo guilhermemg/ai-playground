@@ -13,9 +13,23 @@ from app.observability.langsmith import setup_langsmith
 from app.observability.tracing import setup_tracing
 
 from app.api.routes import agents, questionnaires, documents, chat, prompts, evaluation
+from app.db.models import Questionnaire, QuestionnaireStatus
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(name)s %(levelname)s %(message)s")
 logger = logging.getLogger(__name__)
+
+
+async def _reset_stuck_evaluations(db) -> None:
+    """Reset any questionnaires stuck in EVALUATING from a previous crash."""
+    from sqlalchemy import update
+    result = await db.execute(
+        update(Questionnaire)
+        .where(Questionnaire.status == QuestionnaireStatus.EVALUATING)
+        .values(status=QuestionnaireStatus.PENDING)
+    )
+    if result.rowcount:
+        await db.commit()
+        logger.info("Reset %d stuck evaluations to PENDING", result.rowcount)
 
 
 @asynccontextmanager
@@ -28,6 +42,7 @@ async def lifespan(app: FastAPI):
 
     async with AsyncSessionLocal() as db:
         await seed_database(db)
+        await _reset_stuck_evaluations(db)
 
     yield
 

@@ -3,7 +3,7 @@ from __future__ import annotations
 import json
 import logging
 
-from sqlalchemy import select
+from sqlalchemy import select, text
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.db.models import Agent, Questionnaire, PromptVersion
@@ -75,14 +75,60 @@ SEED_QUESTIONNAIRES = [
             {"question": "What is the normal resting heart rate for adults (bpm)?", "answer": "60-100 bpm"},
         ],
     },
+    {
+        "title": "History & Geography Quiz",
+        "questions": [
+            {"question": "In which year did World War II end?", "answer": "1946"},
+            {"question": "What is the longest river in the world?", "answer": "Amazon"},
+            {"question": "Who was the first president of the United States?", "answer": "George Washington"},
+            {"question": "What is the capital of Japan?", "answer": "Beijing"},
+            {"question": "Which empire built Machu Picchu?", "answer": "The Inca Empire"},
+            {"question": "What continent is Egypt in?", "answer": "Asia"},
+        ],
+    },
+    {
+        "title": "Computer Science Fundamentals",
+        "questions": [
+            {"question": "What does CPU stand for?", "answer": "Central Processing Unit"},
+            {"question": "What is the time complexity of binary search?", "answer": "O(n)"},
+            {"question": "What does HTML stand for?", "answer": "HyperText Markup Language"},
+            {"question": "What is the difference between TCP and UDP?", "answer": "TCP is faster than UDP"},
+            {"question": "What data structure uses LIFO (Last In, First Out)?", "answer": "Stack"},
+            {"question": "What is the binary representation of the decimal number 10?", "answer": "1100"},
+        ],
+    },
+    {
+        "title": "Biology & Chemistry Quiz",
+        "questions": [
+            {"question": "What is the powerhouse of the cell?", "answer": "Mitochondria"},
+            {"question": "What is the chemical formula for water?", "answer": "H2O"},
+            {"question": "How many chromosomes do humans have?", "answer": "48"},
+            {"question": "What element does O represent on the periodic table?", "answer": "Oxygen"},
+            {"question": "What process do plants use to convert sunlight into energy?", "answer": "Respiration"},
+            {"question": "What is the pH of pure water?", "answer": "7"},
+        ],
+    },
 ]
 
 
 async def seed_database(db: AsyncSession) -> None:
-    result = await db.execute(select(Agent).limit(1))
-    if result.scalar_one_or_none() is not None:
-        logger.info("Database already seeded, skipping")
+    lock = await db.execute(text("SELECT pg_try_advisory_lock(12345)"))
+    acquired = lock.scalar()
+    if not acquired:
+        logger.info("Another worker is seeding, skipping")
         return
+
+    try:
+        result = await db.execute(select(Agent).limit(1))
+        if result.scalar_one_or_none() is not None:
+            logger.info("Database already seeded, skipping")
+            return
+        await _do_seed(db)
+    finally:
+        await db.execute(text("SELECT pg_advisory_unlock(12345)"))
+
+
+async def _do_seed(db: AsyncSession) -> None:
 
     logger.info("Seeding database with sample agents and questionnaires...")
 

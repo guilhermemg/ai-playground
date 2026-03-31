@@ -20,6 +20,7 @@ class Settings(BaseSettings):
     pinecone_api_key: str = ""
     pinecone_index_name: str = "tutoring-assistant"
     pinecone_environment: str = "us-east-1"
+    pinecone_dimension: int = 512
 
     # LangSmith
     langchain_tracing_v2: bool = True

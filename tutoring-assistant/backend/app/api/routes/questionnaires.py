@@ -150,6 +150,7 @@ async def _evaluate_single_question(
     from langchain_openai import ChatOpenAI
     from langchain_core.messages import SystemMessage, HumanMessage
     from app.config.settings import get_settings
+    from app.observability.metrics import LLM_TOKENS_USED
 
     settings = get_settings()
     llm = ChatOpenAI(model=settings.openai_router_model, temperature=0.0, api_key=settings.openai_api_key)
@@ -168,6 +169,12 @@ Available agents:
 Respond with ONLY the agent_id string (e.g., "abc123"). If no agent is a good fit, respond with "fallback"."""),
         HumanMessage(content=f"Question: {question['question']}\nStudent Answer: {question['answer']}"),
     ])
+
+    usage = getattr(response, "usage_metadata", None) or {}
+    if usage.get("input_tokens"):
+        LLM_TOKENS_USED.labels(model=settings.openai_router_model, type="input").inc(usage["input_tokens"])
+    if usage.get("output_tokens"):
+        LLM_TOKENS_USED.labels(model=settings.openai_router_model, type="output").inc(usage["output_tokens"])
 
     selected = response.content.strip().strip('"')
     if selected not in agents:
