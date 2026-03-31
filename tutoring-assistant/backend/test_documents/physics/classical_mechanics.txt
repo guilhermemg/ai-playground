@@ -1,0 +1,66 @@
+Classical Mechanics: Fundamental Concepts
+
+1. NEWTON'S LAWS OF MOTION
+
+1.1 First Law (Law of Inertia)
+An object at rest remains at rest, and an object in motion continues in motion with the same speed and in the same direction, unless acted upon by an unbalanced external force. This law defines the concept of inertia — the tendency of an object to resist changes in its state of motion. Mass is a quantitative measure of inertia.
+
+1.2 Second Law (F = ma)
+The acceleration of an object is directly proportional to the net force acting on it and inversely proportional to its mass. Mathematically: F = ma, where F is the net force (in Newtons), m is the mass (in kilograms), and a is the acceleration (in m/s²). This law is the foundation for dynamics — the study of forces and motion.
+
+1.3 Third Law (Action-Reaction)
+For every action, there is an equal and opposite reaction. When object A exerts a force on object B, object B simultaneously exerts a force equal in magnitude and opposite in direction on object A. These forces act on different objects and therefore do not cancel each other.
+
+2. ENERGY AND WORK
+
+2.1 Work
+Work is done when a force causes a displacement. W = F · d · cos(θ), where θ is the angle between the force and displacement vectors. Work is measured in Joules (J). If the force is perpendicular to the displacement, no work is done.
+
+2.2 Kinetic Energy
+Kinetic energy is the energy of motion: KE = (1/2)mv², where m is mass and v is velocity. The work-energy theorem states that the net work done on an object equals its change in kinetic energy: W_net = ΔKE.
+
+2.3 Potential Energy
+Potential energy is stored energy due to position or configuration:
+- Gravitational PE: PE = mgh, where h is the height above a reference point
+- Elastic PE: PE = (1/2)kx², where k is the spring constant and x is the displacement from equilibrium
+
+2.4 Conservation of Energy
+In an isolated system with only conservative forces, the total mechanical energy (KE + PE) remains constant. Energy can be transformed from one form to another but cannot be created or destroyed. When non-conservative forces (like friction) are present, mechanical energy is converted to thermal energy.
+
+3. MOMENTUM AND COLLISIONS
+
+3.1 Linear Momentum
+Momentum is the product of mass and velocity: p = mv. It is a vector quantity. Newton's second law can be expressed as F = dp/dt (the rate of change of momentum equals the net force).
+
+3.2 Conservation of Momentum
+In a system with no external forces, the total momentum is conserved. This principle is fundamental to analyzing collisions:
+- Elastic collisions: Both momentum and kinetic energy are conserved
+- Inelastic collisions: Momentum is conserved but kinetic energy is not
+- Perfectly inelastic collisions: Objects stick together; maximum kinetic energy is lost
+
+3.3 Impulse
+Impulse is the change in momentum: J = FΔt = Δp. A larger force applied over a shorter time produces the same impulse as a smaller force applied over a longer time.
+
+4. ROTATIONAL MECHANICS
+
+4.1 Torque
+Torque is the rotational equivalent of force: τ = r × F = rF sin(θ). It causes angular acceleration. The unit of torque is Newton-meter (N·m).
+
+4.2 Moment of Inertia
+The moment of inertia (I) is the rotational equivalent of mass. It depends on the mass distribution relative to the axis of rotation. For a point mass: I = mr². For extended objects, I is calculated by integration or using known formulas (e.g., solid sphere: I = (2/5)MR²).
+
+4.3 Angular Momentum
+Angular momentum: L = Iω, where ω is the angular velocity. Conservation of angular momentum: In the absence of external torques, the total angular momentum of a system remains constant. This explains phenomena like a figure skater spinning faster when pulling in their arms.
+
+5. GRAVITATION
+
+5.1 Newton's Law of Universal Gravitation
+Every particle attracts every other particle with a force proportional to the product of their masses and inversely proportional to the square of the distance between them: F = G(m₁m₂)/r². The gravitational constant G = 6.674 × 10⁻¹¹ N·m²/kg².
+
+5.2 Orbital Mechanics
+For a circular orbit, the gravitational force provides the centripetal force: GMm/r² = mv²/r. Kepler's three laws describe planetary motion:
+- First Law: Planets move in elliptical orbits with the Sun at one focus
+- Second Law: A line from the Sun to a planet sweeps equal areas in equal times
+- Third Law: T² ∝ r³ (the square of the orbital period is proportional to the cube of the semi-major axis)
+
+Source: Based on introductory physics textbook concepts (OpenStax University Physics, CC BY 4.0).

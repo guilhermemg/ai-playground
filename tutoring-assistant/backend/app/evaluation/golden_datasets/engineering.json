@@ -1,0 +1,17 @@
+{
+  "domain": "engineering",
+  "questions": [
+    {
+      "question": "What is the difference between stress and strain in materials science?",
+      "ground_truth": "Stress is the internal force per unit area within a material (σ = F/A), measured in Pascals (Pa). Strain is the deformation of the material relative to its original dimension (ε = ΔL/L), and it is dimensionless. Hooke's Law relates them in the elastic region: σ = Eε, where E is Young's modulus (modulus of elasticity).",
+      "expected_agent": "engineering",
+      "contexts": ["Stress and strain are fundamental concepts in mechanics of materials."]
+    },
+    {
+      "question": "Explain the concept of feedback in control systems.",
+      "ground_truth": "Feedback in control systems is the process of routing the output (or part of it) back to the input for comparison with the desired reference. Negative feedback reduces error by subtracting the output signal from the reference, improving stability and accuracy. Positive feedback amplifies the error, potentially causing instability. Most engineering control systems use negative feedback to maintain desired performance.",
+      "expected_agent": "engineering",
+      "contexts": ["Feedback is the cornerstone principle of control systems engineering."]
+    }
+  ]
+}

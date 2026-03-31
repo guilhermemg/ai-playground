@@ -1,0 +1,81 @@
+Calculus Fundamentals
+
+1. LIMITS AND CONTINUITY
+
+1.1 The Concept of a Limit
+The limit of a function f(x) as x approaches a value c is the value that f(x) approaches as x gets arbitrarily close to c. Written as: lim(x→c) f(x) = L. The limit may exist even if f(c) is undefined.
+
+1.2 Limit Laws
+- Sum Rule: lim(x→c) [f(x) + g(x)] = lim f(x) + lim g(x)
+- Product Rule: lim(x→c) [f(x) · g(x)] = lim f(x) · lim g(x)
+- Quotient Rule: lim(x→c) [f(x)/g(x)] = lim f(x) / lim g(x), provided lim g(x) ≠ 0
+- Squeeze Theorem: If g(x) ≤ f(x) ≤ h(x) and lim g(x) = lim h(x) = L, then lim f(x) = L
+
+1.3 Continuity
+A function f is continuous at x = c if: (1) f(c) is defined, (2) lim(x→c) f(x) exists, and (3) lim(x→c) f(x) = f(c). The Intermediate Value Theorem states that if f is continuous on [a, b] and k is between f(a) and f(b), then there exists at least one c in (a, b) such that f(c) = k.
+
+2. DERIVATIVES
+
+2.1 Definition
+The derivative of f(x) at x = a is defined as: f'(a) = lim(h→0) [f(a+h) - f(a)] / h. It represents the instantaneous rate of change of f at x = a, and geometrically, it is the slope of the tangent line to the graph at that point.
+
+2.2 Differentiation Rules
+- Power Rule: d/dx [x^n] = nx^(n-1)
+- Product Rule: d/dx [f(x)g(x)] = f'(x)g(x) + f(x)g'(x)
+- Quotient Rule: d/dx [f(x)/g(x)] = [f'(x)g(x) - f(x)g'(x)] / [g(x)]²
+- Chain Rule: d/dx [f(g(x))] = f'(g(x)) · g'(x)
+
+2.3 Common Derivatives
+- d/dx [sin x] = cos x
+- d/dx [cos x] = -sin x
+- d/dx [e^x] = e^x
+- d/dx [ln x] = 1/x
+- d/dx [tan x] = sec²x
+
+2.4 Applications of Derivatives
+- Finding maxima and minima (critical points where f'(x) = 0)
+- Determining concavity (f''(x) > 0: concave up, f''(x) < 0: concave down)
+- Related rates problems
+- Linear approximation: f(x) ≈ f(a) + f'(a)(x - a)
+
+3. INTEGRALS
+
+3.1 The Definite Integral
+The definite integral of f from a to b represents the signed area under the curve: ∫[a to b] f(x) dx. It is defined as the limit of Riemann sums as the partition becomes infinitely fine.
+
+3.2 The Fundamental Theorem of Calculus
+Part 1: If F(x) = ∫[a to x] f(t) dt, then F'(x) = f(x). This connects differentiation and integration.
+Part 2: ∫[a to b] f(x) dx = F(b) - F(a), where F is any antiderivative of f.
+
+3.3 Integration Techniques
+- Substitution (u-substitution): Used when the integrand contains a composite function
+- Integration by parts: ∫ u dv = uv - ∫ v du
+- Partial fractions: Decomposing rational functions into simpler fractions
+- Trigonometric substitution: For integrands containing √(a² - x²), √(a² + x²), or √(x² - a²)
+
+3.4 Applications of Integration
+- Area between curves: A = ∫[a to b] |f(x) - g(x)| dx
+- Volume of revolution (disk method): V = π ∫[a to b] [f(x)]² dx
+- Arc length: L = ∫[a to b] √(1 + [f'(x)]²) dx
+- Work: W = ∫[a to b] F(x) dx
+
+4. SEQUENCES AND SERIES
+
+4.1 Sequences
+A sequence is an ordered list of numbers {a_n}. A sequence converges if lim(n→∞) a_n = L for some finite L.
+
+4.2 Series
+A series is the sum of a sequence: Σ(n=1 to ∞) a_n. A series converges if its partial sums approach a finite limit.
+
+4.3 Convergence Tests
+- Geometric series: Σ ar^n converges if |r| < 1, with sum = a/(1-r)
+- p-series: Σ 1/n^p converges if p > 1
+- Comparison test, Ratio test, Root test, Integral test, Alternating series test
+
+4.4 Taylor Series
+The Taylor series of f(x) centered at x = a is: f(x) = Σ(n=0 to ∞) f^(n)(a)/n! · (x-a)^n. Important Taylor series:
+- e^x = Σ x^n/n!
+- sin x = Σ (-1)^n x^(2n+1)/(2n+1)!
+- cos x = Σ (-1)^n x^(2n)/(2n)!
+
+Source: Based on calculus concepts from OpenStax Calculus (CC BY 4.0).
