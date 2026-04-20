@@ -40,7 +40,7 @@ This project is part of the [AI Playground](https://github.com/guilhermemg/ai-pl
 
 2. **Set Up Environment Variables**:
 
-   Create a `.env` file in the project directory with the following content:
+   Create a `.env` file in the `simple-sales-assistant` directory with the following content:
 
    ```env
    OPENAI_API_KEY=your_openai_api_key_here
@@ -48,9 +48,18 @@ This project is part of the [AI Playground](https://github.com/guilhermemg/ai-pl
 
 3. **Build and Run the Docker Container**:
 
+   The `Dockerfile` lives under `app/`, so build and run from that folder (the run command points at the `.env` in the parent directory):
+
    ```bash
+   cd app
    docker build -t simple-sales-assistant .
-   docker run -d -p 8000:8000 --env-file .env simple-sales-assistant
+   docker run -d -p 8000:8000 --env-file ../.env simple-sales-assistant
+   ```
+
+   To use Docker Compose instead, keep a `.env` next to `docker-compose.yml` (copy from the parent directory if needed), then from `app/` run:
+
+   ```bash
+   docker compose up -d
    ```
 
 ---
