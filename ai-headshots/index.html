@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="AI Headshots — retratos corporativos profissionais gerados por IA a partir da sua foto." />
+    <title>AI Headshots — Retratos profissionais com IA</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Instrument+Sans:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="bg-mesh" aria-hidden="true"></div>
+    <div class="noise" aria-hidden="true"></div>
+
+    <a class="skip-link" href="#main">Ir para o conteúdo</a>
+
+    <div class="wrap">
+      <header class="site-header">
+        <a class="brand" href="#" aria-label="AI Headshots — início">
+          <span class="brand-mark" aria-hidden="true">◉</span>
+          <span class="brand-text">
+            <span class="brand-name">AI Headshots</span>
+            <span class="brand-tag">Retratos corporativos com IA</span>
+          </span>
+        </a>
+        <div class="header-cta">
+          <span class="pill" title="Simulação de interface">Demo — sem backend</span>
+        </div>
+      </header>
+
+      <main id="main">
+        <section class="hero" aria-labelledby="hero-title">
+          <div class="hero-badge">Novo fluxo guiado</div>
+          <h1 id="hero-title">Sua selfie vira um ensaio profissional</h1>
+          <p>
+            Envie uma foto, escolha o estilo e receba variações prontas para LinkedIn, currículo e perfis corporativos — interface pensada para clareza e confiança.
+          </p>
+        </section>
+
+        <div class="panel" role="region" aria-label="Assistente de criação de headshots">
+          <div class="steps-nav" role="tablist" aria-label="Etapas">
+            <div class="step-tab" role="tab" id="tab-1" aria-selected="true" aria-controls="panel-1">
+              <span class="step-num">1</span>
+              <span><span class="step-label-short">Foto</span></span>
+            </div>
+            <div class="step-tab" role="tab" id="tab-2" aria-selected="false" aria-controls="panel-2" aria-disabled="true">
+              <span class="step-num">2</span>
+              <span><span class="step-label-short">Estilo</span></span>
+            </div>
+            <div class="step-tab" role="tab" id="tab-3" aria-selected="false" aria-controls="panel-3" aria-disabled="true">
+              <span class="step-num">3</span>
+              <span><span class="step-label-short">Revisão</span></span>
+            </div>
+            <div class="step-tab" role="tab" id="tab-4" aria-selected="false" aria-controls="panel-4" aria-disabled="true">
+              <span class="step-num">4</span>
+              <span><span class="step-label-short">Resultado</span></span>
+            </div>
+          </div>
+
+          <div class="panel-body">
+            <div class="step-panels">
+              <section
+                class="step-section is-active"
+                id="panel-1"
+                role="tabpanel"
+                aria-labelledby="tab-1"
+                data-step="1"
+              >
+                <h2 class="step-title">Envie sua melhor selfie</h2>
+                <p class="step-desc">Formatos JPG ou PNG, boa luz de frente. Arraste o arquivo ou clique na área abaixo.</p>
+
+                <div class="dropzone" id="dropzone" data-testid="dropzone">
+                  <input type="file" id="file-input" accept="image/jpeg,image/png,image/webp" />
+                  <div class="dropzone-icon" aria-hidden="true">📷</div>
+                  <h3>Arraste ou clique para selecionar</h3>
+                  <p>Até 10 MB · rosto visível e nítido</p>
+                </div>
+
+                <div class="preview-row" id="preview-row" hidden>
+                  <div class="preview-box">
+                    <img id="preview-img" alt="Pré-visualização do upload" />
+                  </div>
+                  <div class="file-meta">
+                    <strong id="file-name">—</strong>
+                    <span id="file-size">—</span>
+                    <button type="button" class="btn-ghost" id="btn-clear-file">Trocar foto</button>
+                  </div>
+                </div>
+
+                <div class="actions">
+                  <span></span>
+                  <button type="button" class="btn btn-primary" id="btn-next-1" disabled>Continuar</button>
+                </div>
+              </section>
+
+              <section class="step-section" id="panel-2" role="tabpanel" aria-labelledby="tab-2" data-step="2" hidden>
+                <h2 class="step-title">Escolha o estilo do ensaio</h2>
+                <p class="step-desc">Selecione o tom visual. No produto final, a IA ajusta luz, fundo e vestuário de forma coerente.</p>
+
+                <div class="style-grid" id="style-grid" role="radiogroup" aria-label="Estilo do retrato">
+                  <label class="style-card">
+                    <input type="radio" name="style" value="formal" checked />
+                    <span class="style-card-inner">
+                      <span class="swatch" style="--a: #1a2340; --b: #3d4f7a"></span>
+                      <h4>Executivo</h4>
+                      <p>Terno, fundo neutro, luz de estúdio</p>
+                    </span>
+                  </label>
+                  <label class="style-card">
+                    <input type="radio" name="style" value="casual" />
+                    <span class="style-card-inner">
+                      <span class="swatch" style="--a: #2d3a2d; --b: #5a6b5a"></span>
+                      <h4>Smart casual</h4>
+                      <p>Descontraído e acessível</p>
+                    </span>
+                  </label>
+                  <label class="style-card">
+                    <input type="radio" name="style" value="criativo" />
+                    <span class="style-card-inner">
+                      <span class="swatch" style="--a: #4a2a5c; --b: #7b4a9a"></span>
+                      <h4>Criativo</h4>
+                      <p>Cor, contraste, personalidade</p>
+                    </span>
+                  </label>
+                  <label class="style-card">
+                    <input type="radio" name="style" value="tecnico" />
+                    <span class="style-card-inner">
+                      <span class="swatch" style="--a: #0d2137; --b: #1e4a6b"></span>
+                    <h4>Tech / inovação</h4>
+                      <p>Clean, moderno, startup</p>
+                    </span>
+                  </label>
+                </div>
+
+                <div class="actions">
+                  <button type="button" class="btn btn-secondary" id="btn-back-2">Voltar</button>
+                  <button type="button" class="btn btn-primary" id="btn-next-2">Revisar</button>
+                </div>
+              </section>
+
+              <section class="step-section" id="panel-3" role="tabpanel" aria-labelledby="tab-3" data-step="3" hidden>
+                <h2 class="step-title">Revisar antes de gerar</h2>
+                <p class="step-desc">Confira os detalhes. A geração é uma simulação nesta demonstração.</p>
+
+                <ul class="review-list" id="review-list">
+                  <li><span>Arquivo</span><span id="rev-file">—</span></li>
+                  <li><span>Estilo</span><span id="rev-style">—</span></li>
+                </ul>
+
+                <div class="actions">
+                  <button type="button" class="btn btn-secondary" id="btn-back-3">Voltar</button>
+                  <button type="button" class="btn btn-primary" id="btn-generate">Gerar headshots (demo)</button>
+                </div>
+              </section>
+
+              <section class="step-section" id="panel-4" role="tabpanel" aria-labelledby="tab-4" data-step="4" hidden>
+                <div id="status-view" class="status-block">
+                  <div class="progress-ring-wrap" aria-hidden="true">
+                    <svg class="progress-ring" width="120" height="120" viewBox="0 0 100 100">
+                      <defs>
+                        <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                          <stop offset="0%" style="stop-color: #5b8cff" />
+                          <stop offset="100%" style="stop-color: #7b5cff" />
+                        </linearGradient>
+                      </defs>
+                      <circle class="bg" cx="50" cy="50" r="45" />
+                      <circle class="fg" id="ring-fg" cx="50" cy="50" r="45" />
+                    </svg>
+                  </div>
+                  <h3 id="status-title">Gerando seus retratos…</h3>
+                  <p id="status-msg">Ajuste de luz, fundo e consistência de pele. Isso levaria alguns minutos com o motor de IA completo.</p>
+                  <div class="status-dots" aria-hidden="true">
+                    <span></span><span></span><span></span>
+                  </div>
+                </div>
+
+                <div id="result-view" hidden>
+                  <div class="result-intro">
+                    <h3>Seu lote de demonstração</h3>
+                    <p>Em produção, as imagens reais aparecem aqui. Por ora, a interface mostra os estilos escolhidos e estados vazios para integração.</p>
+                  </div>
+                  <div class="gallery" id="gallery" role="list"></div>
+                  <p class="tip" role="note">
+                    <strong>Integração:</strong> conecte o endpoint de inferência a este bloco. O layout e os rótulos já alinham o produto ao posicionamento em LinkedIn e perfis corporativos.
+                  </p>
+                </div>
+
+                <div class="actions" id="result-actions" hidden>
+                  <button type="button" class="btn btn-secondary" id="btn-restart">Novo lote</button>
+                  <button type="button" class="btn btn-primary" id="btn-download-mock" disabled title="Habilitar após integração com API">Baixar pacote</button>
+                </div>
+              </section>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <footer class="site-footer">
+        <p>AI Headshots — micro-SaaS de retratos com IA. <a href="#main">Voltar ao topo</a></p>
+      </footer>
+    </div>
+
+    <svg width="0" height="0" style="position: absolute" aria-hidden="true" focusable="false">
+      <linearGradient id="grad-def">
+        <stop offset="0%" style="stop-color: #5b8cff" />
+        <stop offset="100%" style="stop-color: #7b5cff" />
+      </linearGradient>
+    </svg>
+
+    <script src="app.js" defer></script>
+  </body>
+</html>
