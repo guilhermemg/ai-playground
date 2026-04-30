@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="AI Headshots — transforme sua selfie em retratos profissionais com IA."
+    />
+    <title>AI Headshots — Fotos profissionais com IA</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Ir para o conteúdo principal</a>
+
+    <div class="page-bg" aria-hidden="true"></div>
+
+    <header class="site-header">
+      <div class="site-header__inner glass">
+        <a href="#" class="logo" aria-label="AI Headshots — início">
+          <span class="logo__mark" aria-hidden="true"></span>
+          <span class="logo__text">AI Headshots</span>
+        </a>
+        <p class="tagline">Micro-SaaS para fotos corporativas com IA</p>
+      </div>
+    </header>
+
+    <main id="main" class="main">
+      <section class="hero glass" aria-labelledby="hero-title">
+        <h1 id="hero-title" class="hero__title">
+          Da selfie ao <em>LinkedIn-ready</em> em minutos
+        </h1>
+        <p class="hero__lead">
+          Envie uma foto, escolha o estilo e receba variações profissionais —
+          formal, casual, executivo ou criativo — prontas para currículo,
+          portfólio e perfis corporativos.
+        </p>
+      </section>
+
+      <section
+        class="wizard glass"
+        aria-labelledby="wizard-title"
+        data-wizard
+      >
+        <h2 id="wizard-title" class="wizard__title visually-hidden">
+          Fluxo em quatro passos
+        </h2>
+
+        <div
+          class="tabs"
+          role="tablist"
+          aria-label="Etapas do pedido de headshots"
+        >
+          <button
+            type="button"
+            class="tabs__tab"
+            role="tab"
+            id="tab-upload"
+            aria-selected="true"
+            aria-controls="panel-upload"
+            tabindex="0"
+            data-tab="upload"
+          >
+            <span class="tabs__step" aria-hidden="true">1</span>
+            Foto
+          </button>
+          <button
+            type="button"
+            class="tabs__tab"
+            role="tab"
+            id="tab-style"
+            aria-selected="false"
+            aria-controls="panel-style"
+            tabindex="-1"
+            data-tab="style"
+          >
+            <span class="tabs__step" aria-hidden="true">2</span>
+            Estilo
+          </button>
+          <button
+            type="button"
+            class="tabs__tab"
+            role="tab"
+            id="tab-review"
+            aria-selected="false"
+            aria-controls="panel-review"
+            tabindex="-1"
+            data-tab="review"
+          >
+            <span class="tabs__step" aria-hidden="true">3</span>
+            Revisão
+          </button>
+          <button
+            type="button"
+            class="tabs__tab"
+            role="tab"
+            id="tab-generate"
+            aria-selected="false"
+            aria-controls="panel-generate"
+            tabindex="-1"
+            data-tab="generate"
+          >
+            <span class="tabs__step" aria-hidden="true">4</span>
+            Gerar
+          </button>
+        </div>
+
+        <div class="panels">
+          <div
+            id="panel-upload"
+            role="tabpanel"
+            aria-labelledby="tab-upload"
+            class="panel panel--active"
+            data-panel="upload"
+          >
+            <h3 class="panel__heading">Envie sua foto</h3>
+            <p class="panel__hint">
+              Arraste e solte uma imagem ou clique para escolher (JPG ou PNG).
+            </p>
+            <label class="dropzone" data-dropzone>
+              <input
+                type="file"
+                class="dropzone__input"
+                accept="image/jpeg,image/png,image/webp"
+                aria-describedby="upload-help"
+              />
+              <span class="dropzone__content">
+                <span class="dropzone__icon" aria-hidden="true">+</span>
+                <span class="dropzone__text">Solte a foto aqui</span>
+              </span>
+              <img
+                class="dropzone__preview"
+                alt=""
+                hidden
+                data-preview
+              />
+            </label>
+            <p id="upload-help" class="panel__help">
+              A API de geração será conectada depois; por enquanto só
+              pré-visualizamos localmente.
+            </p>
+            <div class="panel__actions">
+              <button type="button" class="btn btn--primary" data-next="style">
+                Continuar
+              </button>
+            </div>
+          </div>
+
+          <div
+            id="panel-style"
+            role="tabpanel"
+            aria-labelledby="tab-style"
+            class="panel"
+            hidden
+            data-panel="style"
+          >
+            <h3 class="panel__heading">Escolha o estilo</h3>
+            <p class="panel__hint">
+              Selecione o tom do ensaio. Você poderá ajustar depois na API.
+            </p>
+            <div
+              class="style-grid"
+              role="radiogroup"
+              aria-label="Estilo do retrato"
+            >
+              <label class="style-card">
+                <input
+                  type="radio"
+                  name="style"
+                  value="formal"
+                  class="style-card__input"
+                  checked
+                />
+                <span class="style-card__swatch style-card__swatch--formal" aria-hidden="true"></span>
+                <span class="style-card__label">Formal</span>
+                <span class="style-card__desc">Terno, fundo neutro</span>
+              </label>
+              <label class="style-card">
+                <input type="radio" name="style" value="casual" class="style-card__input" />
+                <span class="style-card__swatch style-card__swatch--casual" aria-hidden="true"></span>
+                <span class="style-card__label">Casual</span>
+                <span class="style-card__desc">Leve e acessível</span>
+              </label>
+              <label class="style-card">
+                <input type="radio" name="style" value="executive" class="style-card__input" />
+                <span class="style-card__swatch style-card__swatch--executive" aria-hidden="true"></span>
+                <span class="style-card__label">Executivo</span>
+                <span class="style-card__desc">Autoridade e clareza</span>
+              </label>
+              <label class="style-card">
+                <input type="radio" name="style" value="criativo" class="style-card__input" />
+                <span class="style-card__swatch style-card__swatch--criativo" aria-hidden="true"></span>
+                <span class="style-card__label">Criativo</span>
+                <span class="style-card__desc">Luz e cor marcantes</span>
+              </label>
+            </div>
+            <div class="panel__actions">
+              <button type="button" class="btn btn--ghost" data-prev="upload">
+                Voltar
+              </button>
+              <button type="button" class="btn btn--primary" data-next="review">
+                Continuar
+              </button>
+            </div>
+          </div>
+
+          <div
+            id="panel-review"
+            role="tabpanel"
+            aria-labelledby="tab-review"
+            class="panel"
+            hidden
+            data-panel="review"
+          >
+            <h3 class="panel__heading">Revisão do pedido</h3>
+            <dl class="review-summary">
+              <div>
+                <dt>Foto</dt>
+                <dd data-review-photo>—</dd>
+              </div>
+              <div>
+                <dt>Estilo</dt>
+                <dd data-review-style>Formal</dd>
+              </div>
+            </dl>
+            <div class="panel__actions">
+              <button type="button" class="btn btn--ghost" data-prev="style">
+                Voltar
+              </button>
+              <button type="button" class="btn btn--primary" data-next="generate">
+                Iniciar geração
+              </button>
+            </div>
+          </div>
+
+          <div
+            id="panel-generate"
+            role="tabpanel"
+            aria-labelledby="tab-generate"
+            class="panel"
+            hidden
+            data-panel="generate"
+          >
+            <h3 class="panel__heading">Geração</h3>
+            <div class="progress-block" aria-live="polite" aria-busy="false" data-progress-block>
+              <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" data-progressbar></div>
+              <p class="progress-text" data-progress-text>Pronto para simular.</p>
+            </div>
+            <button type="button" class="btn btn--primary btn--block" data-simulate>
+              Simular geração (demo)
+            </button>
+            <div class="gallery" data-gallery aria-label="Galeria de resultados (placeholder)">
+              <p class="gallery__empty" data-gallery-empty>
+                Os retratos gerados aparecerão aqui após a integração com a API.
+              </p>
+            </div>
+            <div class="panel__actions">
+              <button type="button" class="btn btn--ghost" data-prev="review">
+                Voltar
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>AI Headshots — demonstração de interface. Sem armazenamento em servidor nesta versão estática.</p>
+    </footer>
+
+    <script src="app.js" defer></script>
+  </body>
+</html>
